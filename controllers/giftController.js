@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const sequelize = require("../db");
-const Gift = sequelize.models.Gift;
+const Gift = sequelize.models.gift;
 
 // create a new gift
 
@@ -11,7 +11,7 @@ router.post("/", function (req, res) {
 		imageLink: req.body.gift.imageLink,
 		description: req.body.gift.description,
 		price: req.body.gift.price,
-		userId: req.user.id,
+		userId: req.body.user.id,
 	})
 		.then(function createSuccess(gift) {
 			res.status(200).json({
@@ -65,7 +65,7 @@ router.delete("/:id", function (req, res) {
 
 router.get("/:id", function (req, res) {
 	Gift.findAll({
-		where: { userId: req.params.userId },
+		where: { userId: req.params.id },
 	})
 		.then((gifts) => res.status(200).json(gifts))
 		.catch((err) => res.status(500).json({ error: err }));

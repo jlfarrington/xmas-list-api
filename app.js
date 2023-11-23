@@ -15,10 +15,15 @@ app.use("/user", User);
 
 app.post("/info", async (req, res) => {
 	const inputURL = req.body.url;
+	console.log(
+		"request for link info received, getting info for the following url ",
+		inputURL
+	);
 
 	if (inputURL) {
 		try {
 			const linkInfo = await launchAndReturnInfo(inputURL);
+			console.log(`linkInfo: `, linkInfo.title);
 			if (linkInfo.title) {
 				res.status(200).json({
 					linkInfo,

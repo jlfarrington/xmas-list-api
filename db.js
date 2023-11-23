@@ -42,7 +42,7 @@ const Gift = sequelize.define("gift", {
 		allowNull: true,
 	},
 	price: {
-		type: DataTypes.DECIMAL,
+		type: DataTypes.STRING,
 		allowNull: false,
 	},
 	url: {
@@ -54,9 +54,10 @@ const Gift = sequelize.define("gift", {
 		allowNull: false,
 		defaultValue: false,
 	},
+	userId: {
+		type: DataTypes.INTEGER,
+		allowNull: false,
+	},
 });
-
-User.hasMany(Gift);
-Gift.belongsTo(User);
 
 module.exports = sequelize;
